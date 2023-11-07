@@ -13,9 +13,8 @@ public class Main {
         int _yearsForCalc = 0;
         int _initialCapital = 1;
         float _getPercent = 0.05f;
-        double _fStartCapital = _initialCapital - _getPercent; //первый стартовый капитал минус первый процент изъятия
+        double _startYearCapital = _initialCapital - _getPercent; //первый стартовый капитал минус первый процент изъятия
         double _endYearCapital;
-        double _startYearCapital;
 
         System.out.println("Paste Year:");
         Scanner yearsInput = new Scanner(System.in);
@@ -23,12 +22,16 @@ public class Main {
         _yearsAmount = 2022 - _yearsForCalc;
 
 
+        System.out.println("Начало : " + _startYearCapital);
 
         for (double i = _yearsForCalc; i < 2022; i++) {
-             _endYearCapital = _fStartCapital + (_fStartCapital * _moexDelta[(int)(2022f - i)]);
+             _endYearCapital = _startYearCapital + (_startYearCapital * _moexDelta[(int)(2022f - i)]);
+            System.out.println("Конец : " + _endYearCapital);
              _startYearCapital = _endYearCapital - (_getPercent + Constances.INFLATION_RATE[(int)(2022f - i)]);
-            System.out.println(_endYearCapital);
-        } 
+            System.out.println("Начало : " + _startYearCapital);
+
+
+        }
     }
 
     //вычисление дельты мосБиржи
