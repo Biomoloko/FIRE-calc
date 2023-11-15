@@ -12,7 +12,7 @@ public class Main {
         int _yearsAmount;
         int _yearsForCalc = 0;
         int _initialCapital = 100;
-        float _getPercent = 10f;
+        float _getPercent = 4f;
         double _startYearCapital = _initialCapital - _getPercent; //первый стартовый капитал минус первый процент изъятия
         double _endYearCapital = 100;
         boolean enough = false;
