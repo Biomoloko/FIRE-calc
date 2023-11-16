@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FIRE-calc:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FIRE_calc_jar</output-path>
+    <root id="archive" name="FIRE-calc.jar">
+      <element id="module-output" name="FIRE-calc" />
+    </root>
+  </artifact>
+</component>
