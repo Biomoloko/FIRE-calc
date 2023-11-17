@@ -7,7 +7,7 @@ public class Main {
 
         _moexDelta = MoexDelta();
         int _yearsAmount;
-        int _yearsForCalc = 0;
+        int _userInputYears = 0;
         int _initialCapital = 100;
         float _getPercent = 0f;
         double _startYearCapital = 100;//_initialCapital - _getPercent; //первый стартовый капитал минус первый процент изъятия
@@ -17,30 +17,29 @@ public class Main {
 
         System.out.println("Paste Year:");
         Scanner yearsInput = new Scanner(System.in);
-        _yearsForCalc = yearsInput.nextInt();
-        _yearsAmount = 2022 - _yearsForCalc;
-        if (_yearsForCalc > 2021){
+        _userInputYears = yearsInput.nextInt();
+        _yearsAmount = 2022 - _userInputYears;
+        if (_userInputYears > 2021){
             return;
         }
-        System.out.println ("Максимальный процент изъятия : " + GetPercentCalculations(_startYearCapital,_endYearCapital, _yearsAmount, _initialCapital, _getPercent, _yearsForCalc, MoexDelta()));
-
+        System.out.println ("Максимальный процент изъятия : " + GetPercentCalculations(_startYearCapital,_endYearCapital, _yearsAmount, _initialCapital, _getPercent, _userInputYears, MoexDelta()));
     }
-   public static float GetPercentCalculations(double startYearCapital, double endYearCapital, int yearsAmount, int initialCapital, float getPercent,  int yearsForCalc, double[]moexDelta ){
+   public static float GetPercentCalculations(double startYearCapital, double endYearCapital, int yearsAmount, int initialCapital, float getPercent,  int userInputYears, double[]moexDelta ){
 
         while (startYearCapital > 0) {
             int counter = (Constances.INFLATION_RATE.length - yearsAmount);
             startYearCapital = initialCapital - getPercent;
             endYearCapital = 0;
 
-            for (int i = yearsForCalc; i < 2022; i++) {
-                System.out.println(i + " - " + startYearCapital);
+            for (int i = userInputYears; i < 2022; i++) {
                 endYearCapital = startYearCapital + (startYearCapital * moexDelta[counter]);
                 startYearCapital = endYearCapital - (getPercent + (Constances.INFLATION_RATE[counter - 1]));
                 counter++;
             }
                 getPercent += 0.5f;
+
         }
-        getPercent -= 1f;
+        getPercent -= 0.5f;
         if(getPercent > 0){
             return getPercent;
         } else {
